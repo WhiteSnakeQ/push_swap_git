@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:49:38 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 16:28:09 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 21:54:36 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "scripts/libft/libft.h"
 # include "scripts/printf/ft_printf.h"
 
 # define SA "sa\n"
@@ -67,22 +66,28 @@ typedef struct s_act
 int		main(int argc, char **argv);
 
 //				Parsing
-t_stuck	*make_stuck(char **strs, int start, int clean);
+t_stuck	*make_stuck(char **strs, int start);
 char	*new_str(char *str);
 char	**make_strs(char *str);
 char	**create_strs(char *str, int size);
+char	**check_all_strs(char **strs);
+char	**make_full_strs(char **strs);
+void	connect_strs(char **start, char **cont);
+long	parse_str(const char *str);
 int		check_dubl(int value, t_list_d *first);
 int		check_string(long *number_print, const char *symbol, int *minus);
-int		parse_str(const char *str);
 int		count_world_str(char *str);
 int		check_real_digit(int digit, char *str);
+int		check_all_str(char *str);
+int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
 
 //				Init_&&_create_&&_delete_obj
-int		create_list(int value, t_stuck *stuck);
+int		create_list(long value, t_stuck *stuck);
 int		init_list(int value, t_list_d *first_l, t_list_d *last_l);
 void	init_stuck(t_stuck *stuck, int size, int act_size);
 void	init_action(t_act *act, t_list_d *list_a, t_list_d *list_b);
 void	free_stuck(t_stuck **stuck);
+void	clean_strs(char **strs);
 void	clear_l(t_list_d **list);
 
 //				Action_with_list
@@ -129,11 +134,16 @@ void	move_act_up(t_act *act, t_stuck *a, t_stuck *b);
 void	move_act_down(t_act *act, t_stuck *a, t_stuck *b);
 
 //				Helpers
-int		abc(int a);
 void	make_stuck_head(t_stuck *a, t_stuck *b);
+int		abc(int a);
 int		check_order_a(t_stuck *a);
 
-//				print_stuck
+//				Checker
+int		make_work(t_stuck *a, t_stuck *b);
+int		make_action(t_stuck *a, t_stuck *b, char *act);
+//		int	main(int argc, char **argv)
+
+//				Print_stuck
 void	printf_stuck(t_stuck *a, t_stuck *b, int i);
 
 #endif

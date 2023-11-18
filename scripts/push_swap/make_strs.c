@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:31:45 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 07:27:09 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 21:23:17 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**create_strs(char *str, int size)
 
 	digit = 0;
 	i = 0;
-	if (size == 0)
+	if (size <= 0)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (size + 1));
 	if (!strs)
@@ -52,6 +52,8 @@ char	**create_strs(char *str, int size)
 				i++;
 			i++;
 		}
+		else if (str[i] == ',')
+			i++;
 	}
 	return (strs);
 }
@@ -69,7 +71,7 @@ int	count_world_str(char *str)
 		i++;
 	while (str && str[i])
 	{
-		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
+		if ((str[i] >= '0' && str[i] <= '9') || (str[i] == '-' && space == 1))
 		{
 			if (space == 1)
 				count_size++;
@@ -84,14 +86,18 @@ int	count_world_str(char *str)
 	return (count_size);
 }
 
-char	**make_strs(char *str)
+int	check_all_str(char *str)
 {
-	int		size;
+	int	i;
 
-	if (*str == ' ')
-		str++;
-	size = count_world_str(str);
-	if (size == 0)
-		return (NULL);
-	return (create_strs(str, size));
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' || str[i] == '-' \
+			|| str[i] == ',')
+			i++;
+		else if (str[i] != '\0')
+			return (-1);
+	}
+	return (0);
 }

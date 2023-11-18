@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 19:31:45 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 07:27:02 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 21:16:48 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	check_string(long *number_print, const char *symbol, int *minus)
 	return (1);
 }
 
-int	parse_str(const char *str)
+long	parse_str(const char *str)
 {
 	long		number_to_print;
 	int			minus;
@@ -88,33 +88,27 @@ int	parse_str(const char *str)
 	check_string(&number_to_print, str, &minus);
 	if (minus == -1)
 		number_to_print = -number_to_print;
-	return ((int)number_to_print);
+	return (number_to_print);
 }
 
-t_stuck	*make_stuck(char **strs, int start, int clean)
+t_stuck	*make_stuck(char **strs, int start)
 {
 	t_stuck	*my_stuck;
 	int		size;
-	int		i;
 
 	my_stuck = malloc(sizeof(t_stuck));
-	if (!my_stuck || !strs)
-		return (NULL);
-	i = -1;
+	if (!my_stuck || !strs || !*strs)
+		return (my_stuck);
 	size = 0;
 	while (strs[size + start])
 		size++;
-	init_stuck(my_stuck, size, size);
+	init_stuck(my_stuck, size, 0);
 	while (strs[start])
 	{
 		if (create_list(parse_str(strs[start]), my_stuck) == -1 \
 		|| check_real_digit(my_stuck->last->value, strs[start]) == -1)
-			return (NULL);
-		if (clean == 1)
-			free(strs[start]);
+			return (my_stuck);
 		start++;
 	}
-	if (clean == 1)
-		free(strs);
 	return (my_stuck);
 }

@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 06:54:20 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/18 16:34:44 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 20:39:04 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,22 @@ void	clear_l(t_list_d **list)
 
 void	free_stuck(t_stuck **stuck)
 {
+	if (!stuck || !*stuck)
+		return ;
 	if ((*stuck)->act_size > 0)
 		clear_l(&(*stuck)->first);
 	free(*stuck);
+	*stuck = NULL;
+}
+
+void	clean_strs(char **strs)
+{
+	int	i;
+
+	i = 0;
+	if (!strs || !*strs)
+		return ;
+	while (strs[i])
+		free(strs[i++]);
+	free(strs);
 }

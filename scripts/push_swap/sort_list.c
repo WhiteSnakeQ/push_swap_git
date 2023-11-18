@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:48:14 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 07:26:43 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 18:18:42 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	ft_sort_int_tab(t_list_d **tab, int size)
 {
 	int		iteraion_of_array;
 	int		main_iteration;
-	int		increase;
 
 	main_iteration = size;
 	while (main_iteration > 0)
 	{
 		iteraion_of_array = size - 1;
-		increase = size;
 		while (iteraion_of_array >= 0)
 		{
 			if (tab[main_iteration - 1]->value > tab[iteraion_of_array]->value)

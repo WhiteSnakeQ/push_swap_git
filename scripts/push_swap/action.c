@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 21:15:12 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 16:38:42 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 21:45:11 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void	swap(t_stuck *a, t_stuck *b, int mod)
 
 void	push_down(t_stuck *a, t_stuck *b, int mod)
 {
-	if (a)
+	if (a && a->act_size >= 1)
 	{
 		a->first = a->first->back;
 		a->last = a->last->back;
 		if (mod == 0)
 			ft_printf("%s", (char *)RRA);
 	}
-	if (b)
+	if (b && b->act_size >= 1)
 	{
 		b->first = b->first->back;
 		b->last = b->last->back;
@@ -84,14 +84,14 @@ void	push_down(t_stuck *a, t_stuck *b, int mod)
 
 void	push_up(t_stuck *a, t_stuck *b, int mod)
 {
-	if (a)
+	if (a && a->act_size >= 1)
 	{
 		a->first = a->first->next;
 		a->last = a->last->next;
 		if (mod == 0)
 			ft_printf("%s", (char *)RA);
 	}
-	if (b)
+	if (b && b->act_size >= 1)
 	{
 		b->first = b->first->next;
 		b->last = b->last->next;

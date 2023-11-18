@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 21:09:08 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 07:49:28 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 21:18:55 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,17 @@ int	init_list(int value, t_list_d *first_l, t_list_d *last_l)
 	return (1);
 }
 
-int	create_list(int value, t_stuck *stuck)
+int	create_list(long value, t_stuck *stuck)
 {
 	static int	counter = 0;
 	int			check;
 
 	if (counter == 0)
 		stuck->first = malloc(sizeof(t_list_d));
-	else if (check_dubl(value, stuck->first) == -1)
+	else if (value > 2147483647 || value < -2147483648 || \
+	check_dubl(value, stuck->first) == -1)
 		return (-1);
+	stuck->act_size++;
 	check = init_list(value, stuck->first, stuck->last);
 	if (counter == 0)
 		stuck->last = stuck->first;

@@ -6,11 +6,22 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:54:43 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 16:39:50 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 18:59:42 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
+
+char	**check_all_strs(char **strs)
+{
+	int	i;
+
+	i = 1;
+	while (strs[i])
+		if (check_all_str(strs[i++]) == -1)
+			return (NULL);
+	return (strs);
+}
 
 void	make_tree(t_stuck *a)
 {

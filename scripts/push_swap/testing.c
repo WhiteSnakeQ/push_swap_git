@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:15:36 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/17 16:24:45 by kreys            ###   ########.fr       */
+/*   Updated: 2023/11/18 19:02:28 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	check_order_a(t_stuck *a)
 	int			i;
 
 	i = 0;
-	if (a->act_size == 0)
-		return (-2);
+	if (a->act_size <= 1)
+		return (-1);
 	list = a->first;
 	check_d = list->next;
 	while (i == 0 || (list != a->first && check_d != a->first))
